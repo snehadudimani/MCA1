@@ -1,0 +1,54 @@
+<div id="chartContainer" class="container" style="height: 300px;"></div>
+<script>
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Accuracy of Five Machine Learning Algorithms"
+	},
+	axisY: {
+		title: "Accuracy"
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [{
+		type: "column",
+		name: "Without Feature selection and SMOTE",
+		legendText: "Without Feature selection and SMOTE",
+		showInLegend: true,
+		dataPoints: [
+			{ y: 60.5, label: "Decision Tree" },
+			{ y: 45.4,  label: "K-Nearest Neighbour" },
+			{ y: 60.5,  label: "Logistics Regression" },
+			{ y: 53.8,  label: "Naive Bayes" },
+			{ y: 77.3,  label: "Random Forest" },
+		]
+	},
+	{
+		type: "column",
+		name: "With Feature selection and SMOTE",
+		legendText: "With Feature selection and SMOTE",
+		showInLegend: true,
+		dataPoints: [
+			{ y: 79.0, label: "Decision Tree" },
+			{ y: 56.4,  label: "K-Nearest Neighbour" },
+			{ y: 79.5,  label: "Logistics Regression" },
+			{ y: 73.8,  label: "Naive Bayes" },
+			{ y: 88.2,  label: "Random Forest" },
+		]
+	}]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+</script>
